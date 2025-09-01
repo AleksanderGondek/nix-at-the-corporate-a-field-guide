@@ -1,0 +1,502 @@
+<!doctype html>
+<html lang="en">
+
+    <head>
+        <meta charset="utf-8">
+
+        <title>Nix at the Corporate: a field guide</title>
+
+        <meta name="description" content="Slides for the NixCon 2025">
+        <meta name="author" content="Aleksander Gondek">
+
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <link rel="stylesheet" href="assets/reveal-js/dist/reset.css">
+        <link rel="stylesheet" href="assets/reveal-js/dist/reveal.css">
+        <link rel="stylesheet" href="assets/white.css" id="theme">
+        <link rel="stylesheet" href="assets/natc.css">
+
+        <link rel="stylesheet" href="assets/reveal-js/plugin/highlight/monokai.css">
+        <link rel="stylesheet" href="assets/font-awesome/css/fontawesome.min.css">
+        <link rel="stylesheet" href="assets/font-awesome/css/brands.min.css">
+        <link rel="stylesheet" href="assets/font-awesome/css/solid.min.css">
+        <link rel="stylesheet" href="assets/font-awesome/css/regular.min.css">
+    </head>
+
+    <body>
+
+        <div class="reveal">
+
+        <div class="slides">
+              <section>
+                    <img src="assets/nixos-ascii.png" alt="nixos logo ascii style" style="height: 10em; background: transparent;">
+                    <h3>Nix at the Corporate:</h3>
+                    <h4>a <s>field</s> survival guide</h4>
+                    <p>
+                        <small class="cursor-blink">Journaled by <i class="fa-brands fa-square-github"></i><a href="mailto:gondekaleksander@protonmail.com">@AleksanderGondek</a></small>
+                    </p>
+                </section>
+
+                <section>
+                    <section>
+                    <h3>Why give this talk?</h3>
+                    </section>
+                    <section>
+                    <p>Does the guy...</p>
+                    <ul>
+                        <li class="fragment fade-in-then-semi-out">Loves his voice so much?</li>
+                        <li class="fragment fade-in-then-semi-out">Desperately wants to get on youtube?</li>
+                        <li class="fragment fade-in-then-semi-out">Have nothing technical to contribute?</li>
+                        <li class="fragment fade-in-then-semi-out">Craves attention?</li>
+                        <li class="fragment fade-in cursor-blink">All of the above?</li>
+                    </ul>
+                    </section>
+                    <section>
+                        <b>dumbfounded</b><br/>
+                        <i>(adjective)</i><br/>
+                        <p class="cursor-blink">so shocked that you cannot speak</p>
+                    </section>
+                    <section>
+                        <h4>The fabled land of Corporate</h4>
+                        <small>Uncovered better ways of developing software. It values:</small>
+                        <small class="fragment fade-in-then-semi-out">Processes and tools over individuals and interactions</small>
+                        <small class="fragment fade-in-then-semi-out">Working 3-times-out-of-5 software over correct software</small>
+                        <small class="fragment fade-in-then-semi-out">Contract negotiations with malicious compliance to it, over collaboration</small>
+                        <small class="fragment fade-in-then-semi-out cursor-blink">Following plan over responsing to change</small>
+                    </section>
+                    <section>
+                        <h4>The fabled land of Corporate</h4>
+                        <small class="fragment fade-in-then-semi-out">Politics over logical reasoning</small>
+                        <small class="fragment fade-in-then-semi-out">Hyper-specialized teams that each create their own silo</small>
+                        <small class="fragment fade-in-then-semi-out">Taking ownership of a thing is considered the worst outcome</small>
+                      <small class="fragment fade-in cursor-blink">Succeeds inspite of its own inefficiences</small>
+                    </section>
+                    <section>
+                        <h3>Mission statement:</h3>
+                        <p class="fragment fade-in cursor-blink">The 'Nix at the Corporate' talk mission is to prevent nix users from exeperiencing mental and emotional harm,
+                        due to being subjected to Corporate ways of (not)working. I do this throught education, advocacy and dry humor.</p>
+                    </section>
+                </section>
+
+                <section>
+                    <section>
+                        <h3>Why even listen to me?</h3>
+                    </section>
+                    <section>
+                        <img src="assets/AleksanderGondek.png" style="border-radius: 50%;">
+                        <p class="cursor-blink">Roughly 8 years of using Nix at various Corporate settings</p>
+                    </section>
+                </section>
+
+                <section>
+                    <p>The examples of this talk are amalgamation of many, many interactions I had over the years.</p>
+                    <p class="cursor-blink">No single company can claim to be this exceptional.</p>
+                </section>
+
+                <section>
+                    <h4><b>Challange</b>: If You have heard it before, take a drink.</h4>
+                </section>
+
+                <section>
+                    <section>
+                      <h3>Adventure begins</h3>
+                    </section>
+                    <section class="creator">
+                        <h4>character creation</h4>
+                        <p>::choose game mode::</p>
+
+                        <table><tbody>
+                          <tr>
+                            <td><i class="fa-solid fa-graduation-cap"></i></td>
+                            <td><i class="fa-solid fa-blender"></i></td>
+                            <td><i class="fa-solid fa-person-walking"></i></td>
+                            <td><i class="fa-solid fa-droplet"></i></td>
+                          </tr>
+                          <tr>
+                            <td>Tutorial</td>
+                            <td>Classic</td>
+                            <td>Wealthy</td>
+                            <td>Hurt me</td>
+                          </tr>
+                          <tr>
+                            <td>[A]</td>
+                            <td>[B]</td>
+                            <td>[C]</td>
+                            <td>[D]</td>
+                          </tr>
+                        </tbody>
+                        </table>
+
+                        <p class="cursor-blink"></p>
+                    </section>
+
+                  <section class="creator">
+                        <h4>character creation</h4>
+                        <p>::choose game mode::</p>
+
+                        <table><tbody>
+                          <tr>
+                            <td><i class="fa-solid fa-graduation-cap"></i></td>
+                            <td><i class="fa-solid fa-blender"></i></td>
+                            <td><i class="fa-solid fa-person-walking"></i></td>
+                            <td><i class="fa-solid fa-droplet"></i></td>
+                          </tr>
+                          <tr>
+                            <td>Tutorial</td>
+                            <td>Classic</td>
+                            <td>Wealthy</td>
+                            <td>Hurt me</td>
+                          </tr>
+                          <tr>
+                            <td class="action">[A]</td>
+                            <td>[B]</td>
+                            <td>[C]</td>
+                            <td>[D]</td>
+                          </tr>
+                        </tbody>
+                        </table>
+
+                        <p class="cursor-blink">
+                        Learn the basics of the Enterprise madness
+                        </p>
+                    </section>
+
+                    <section class="creator">
+                        <h4>character creation</h4>
+                        <p>::choose preset::</p>
+
+                        <table><tbody>
+                          <tr>
+                            <td><i class="fa-solid fa-glasses"></i></td>
+                            <td><i class="fa-solid fa-comment"></i></td>
+                            <td><i class="fa-solid fa-archway"></i></td>
+                            <td><i class="fa-solid fa-ribbon"></i></td>
+                          </tr>
+                          <tr>
+                            <td>Alex</td>
+                            <td>Consultant</td>
+                            <td>Architect</td>
+                            <td>DevOps</td>
+                          </tr>
+                          <tr>
+                            <td>[A]</td>
+                            <td>[B]</td>
+                            <td>[C]</td>
+                            <td>[D]</td>
+                          </tr>
+                        </tbody>
+                        </table>
+
+                       <p class="cursor-blink"></p>
+                    </section>
+
+                  <section class="creator">
+                        <h4>character creation</h4>
+                        <p>::choose preset::</p>
+
+                        <table><tbody>
+                          <tr>
+                            <td><i class="fa-solid fa-glasses"></i></td>
+                            <td><i class="fa-solid fa-comment"></i></td>
+                            <td><i class="fa-solid fa-archway"></i></td>
+                            <td><i class="fa-solid fa-ribbon"></i></td>
+                          </tr>
+                          <tr>
+                            <td>Alex</td>
+                            <td>Consultant</td>
+                            <td>Architect</td>
+                            <td>DevOps</td>
+                          </tr>
+                          <tr>
+                            <td class="action">[A]</td>
+                            <td>[B]</td>
+                            <td>[C]</td>
+                            <td>[D]</td>
+                          </tr>
+                        </tbody>
+                        </table>
+
+                        <ul>
+                            <li>+ Knows what he does not know</li>
+                            <li>+ Likes to learn new things</li>
+                            <li>- Vulnerable to strong opinions with no technical backing</li>
+                            <li>- Cannot comprehend why people dislike learning new things</li>
+                        </ul>
+                       <p class="cursor-blink"></p>
+                    </section>
+
+                </section>
+
+                <section>
+                    <section>
+                        <p>You have been hired by <b>RationalPacket Inc.</b>; company that provides Enterprise-ready docking stations to biggest
+                        technical corporations of the world (MANGO and alike). Operating for past 15 years and it became
+                        the de-facto standard of corporate docking stations, due to their priopriatary technology that allows to apply policies
+                        to the stations...</p>
+                        <small class="cursor-blink">Press any key to continue...</small>
+                    </section>
+                    <section>
+                        <h4>Problem statement: RationalPacket</h4>
+                        <ul>
+                            <li class="fragment fade-in">Bespoke package-manager</li>
+                            <li class="fragment fade-in">Does not build anything on its own</li>
+                            <li class="fragment fade-in">Does not trace dependencies</li>
+                            <li class="fragment fade-in">Spaghetti monster of symlinks and binaries</li>
+                            <li class="fragment fade-in">RHEL or bust</li>
+                        </ul>
+                        <br/>
+                        <small class="cursor-blink">Press any key to continue...</small>
+                    </section>
+                    <section>
+                        <h4>Deployment?</h4>
+                        <ul>
+                            <li class="fragment fade-in">Embedded? Not only!</li>
+                            <li class="fragment fade-in">Has `x64` host onboard!</li>
+                            <li class="fragment fade-in">Some part of software suite are compiled on the host!</li> 
+                        </ul>
+                        <br/>
+                        <small class="cursor-blink">Press any key to continue...</small>
+                    </section>
+                    <section>
+                        <h4>Goals</h4>
+                        <ul>
+                            <li class="fragment fade-in">Minimal functional deployments</li>
+                            <li class="fragment fade-in">Re-create previous deployments</li>
+                            <li class="fragment fade-in">Quickly switch beteween 'versions'</li> 
+                        </ul>
+                        <br/>
+                        <small class="cursor-blink">Press any key to continue...</small>
+                    </section>
+                    <section>
+                        <p>Reasonable minds agree nix is the way to go and this is why You are hired. But..</p>
+                    </section>
+                </section>
+
+                <section>
+                    <section>
+                      <h4>Let the meeting games begin!</h4>
+                      <small class="cursor-blink">Press any key to continue...</small>
+                    </section>
+                    <section>
+                        <ul>
+                            <li class="fragment fade-in">Excuser</li>
+                            <li class="fragment fade-in">Cargo culter</li>
+                            <li class="fragment fade-in">Not-a-real engineer</li>
+                        </ul>
+                        <br/>
+                        <small class="cursor-blink">Press any key to continue...</small>
+                    </section>
+                </section>
+
+                <section>
+                    <section>
+                        <h4>RationalPackager Architect</h4>
+                        <small>Excuser</small>
+                    </section>
+                    <section>
+                        <p>Nix will not be <b>reproducible</b> because it will be run on RHEL, not NixOS</p>
+                        <small class="cursor-blink">Type in Your response...</small>
+                    </section>
+                    <section>
+                        <p>Nix has less packages then RationalPackager</p>
+                        <small class="cursor-blink">Type in Your response...</small>
+                    </section>
+                    <section>
+                        <p>Nix does not have packes internal to RationalPacket Inc.</p>
+                        <small class="cursor-blink">Type in Your response...</small>
+                    </section>
+                    <section>
+                        <p>Nix is difficult to learn and it's a waste of time to learn a new thing when old one works</p>
+                        <small class="cursor-blink">Type in Your response...</small>
+                        </section>
+                    <section>
+                        <p>`.nar` is not an accepted / standardized format for archivization</p>
+                        <small class="cursor-blink">Type in Your response...</small>
+                    </section>
+                    <section>
+                        <p>Nix is replacing all datetime stamps with Linux epoch start. How are we supposed to know what is newest?</p>
+                        <small class="cursor-blink">Type in Your response...</small>
+                    </section>
+                    <section>
+                      <p>What if someone injects a script into package in upstream nixpkgs?</p>
+                        <small class="cursor-blink">Type in Your response...</small>
+                    </section>
+                    <section>
+                      <p>...then there is no control over what gets updated locally</p>
+                        <small class="cursor-blink">Type in Your response...</small>
+                    </section>
+                    <section>
+                      <p>Nix does not have security scanning</p>
+                        <small class="cursor-blink">Type in Your response...</small>
+                    </section>
+                    <section>
+                      <p>Nix does not have security scanning implemented in ...</p>
+                        <small class="cursor-blink">Type in Your response...</small>
+                    </section>
+                    <section>
+                      <p>There is no whitesectionsting/blacksectionsting of packages and no ACLs</p>
+                        <small class="cursor-blink">Type in Your response...</small>
+                    </section>
+                    <section>
+                      <p>What if someone uses upstream packages instead of internal one for the build</p>
+                        <small class="cursor-blink">Type in Your response...</small>
+                    </section>
+                    <section>
+                      <p>Nix is not supported by vendors because it iterferes with vendors packages contents</p>
+                        <small class="cursor-blink">Type in Your response...</small>
+                    </section>
+                    <section>
+                      <p>If vendor releases a new package, new nix definition are needed</p>
+                        <small class="cursor-blink">Type in Your response...</small>
+                    </section>
+                    <section>
+                      <p>Functional languages are thing of the past</p>
+                        <small class="cursor-blink">Type in Your response...</small>
+                    </section>
+                    <section>
+                      <p>Nix is too difficult and does not give any benefits over docker which uses YAMLs (sic!)</p>
+                      <small class="cursor-blink">Type in Your response...</small>
+                    </section>
+                </section>
+                <section>
+                    <section>
+                      <h4>Infrastracture Architect</h4>
+                      <small>Cargo cult</small>
+                    </section>
+                    <section>
+                        <p>Why use package manager, we can use docker, why not just use docker</p>
+                        <small class="cursor-blink">Type in Your response...</small>
+                    </section>
+                    <section>
+                      <p>Docker is hermetic (said as if it meant reproducible)</p>
+                        <small class="cursor-blink">Type in Your response...</small>
+                    </section>
+                    <section>
+                        <p>You can easily re-create docker images in 1:1</p>
+                        <small class="cursor-blink">Type in Your response...</small>
+                    </section>
+                    <section>
+                      <p>Docker layers cache means no one has to worry about diskspace</p>
+                        <small class="cursor-blink">Type in Your response...</small>
+                    </section>
+                    <section>
+                        <p>docker-compose is all we need</p>
+                        <small class="cursor-blink">Type in Your response...</small>
+                    </section>
+                  <section>
+                      <p>YAML is more reliable (sic!) because it is easier to read</p>
+                        <small class="cursor-blink">Type in Your response...</small>
+                    </section>
+                    <section>
+                        <p>Everything runs docker / k8s now</p>
+                        <small class="cursor-blink">Type in Your response...</small>
+                    </section>
+                    <section>
+                        <p>Flatpack is the future, it's so easy to bundle</p>
+                        <small class="cursor-blink">Type in Your response...</small>
+                    </section>
+                    <section>
+                        <p>LLM has told me that You can simply copy over the binary</p>
+                        <small class="cursor-blink">Type in Your response...</small>
+                    </section>
+                    <section>
+                        <p> LLM has wrote makefile for me that is hermetic</p>
+                        <small class="cursor-blink">Type in Your response...</small>
+                    </section>
+                </section>
+                <section>
+                    <section>
+                      <h4>PO / PM / PL / P + rand('latin', 1)</h4>
+                        <small>Not-a-real engineer</small>
+                    </section>
+                    <section>
+                      <p>You have to be pragmatic!</p>
+                        <small class="cursor-blink">Type in Your response...</small>
+                    </section>
+                    <section>
+                        <p>Go fast and break things!</p>
+                        <small class="cursor-blink">Type in Your response...</small>
+                    </section>
+                    <section>
+                      A real <s>scotsman</s> engineer would quickly do it.
+                    </section>
+                    <section>
+                      <p>The work is going slow, I am adding 6 people new to nix to help.</p>
+                      <small class="cursor-blink">Type in Your response...</small>
+                    </section>
+                    <section>
+                        <p>Just add binary outputs as input to nix derivation</p>
+                        <small class="cursor-blink">Type in Your response...</small>
+                    </section>
+                    <section>
+                        <p>Just use makefiles and docker save it</p>
+                        <small class="cursor-blink">Type in Your response...</small>
+                    </section>
+                    <section>
+                        <p>Why re-write it, we <b>just</b> want to add few improvements?</p>
+                        <small class="cursor-blink">Type in Your response...</small>
+                    </section>
+                    <section>
+                        <p>If You cannot estimate it precisely, You do not know what You are doing</p>
+                        <small class="cursor-blink">Type in Your response...</small>
+                    </section>
+                </section>
+
+                <section>
+                    <section>
+                      <h4 class="fragment fade-in-then-semi-out">You are the company You keep...</h4>
+                      <h4 class="fragment fade-in">How not to become one of 'them'?</h4>
+                    </section>
+                    <section>
+                      <h4>Be humble.</h4>
+                    </section>
+                    <section>
+                      <h4>Be patient.</h4>
+                    </section>
+                    <section>
+                      <h4>Listen first.</h4>
+                    </section>
+                    <section>
+                        <h4>Firmly oppose what is improper.</h4>
+                    </section>
+                    <section>
+                    <img src="assets/mmm-cover.jpg"/>
+                    <small class="curos-blink">1975 (sic!)</small>
+                    </section>
+                </section>
+
+                <section>
+                    <h4>That's a wrap!</h4>
+                </section>
+
+            </div>
+
+        </div>
+
+        <script src="assets/reveal-js/dist/reveal.js"></script>
+        <script src="assets/reveal-js/plugin/zoom/zoom.js"></script>
+        <script src="assets/reveal-js/plugin/notes/notes.js"></script>
+        <script src="assets/reveal-js/plugin/search/search.js"></script>
+        <script src="assets/reveal-js/plugin/markdown/markdown.js"></script>
+        <script src="assets/reveal-js/plugin/highlight/highlight.js"></script>
+        <script>
+
+            // Also available as an ES module, see:
+            // https://revealjs.com/initialization/
+            Reveal.initialize({
+                controls: true,
+                progress: true,
+                center: true,
+                hash: true,
+
+                // Learn about plugins: https://revealjs.com/plugins/
+                plugins: [ RevealZoom, RevealNotes, RevealSearch, RevealMarkdown, RevealHighlight ]
+            });
+
+        </script>
+
+    </body>
+</html>

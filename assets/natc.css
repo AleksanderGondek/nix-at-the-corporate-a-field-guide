@@ -1,0 +1,49 @@
+.cursor-blink::after {
+  animation-name: blinker;
+  animation-iteration-count: infinite;
+  animation-timing-function: cubic-bezier(1,0,0,1);
+  animation-duration: 1s;
+  content: "";
+  width: 0.75em;
+  height: 1em;
+  background: #000000;
+  display: inline-block;
+  margin-left: 0.25em;
+}
+
+@keyframes blinker { 
+  from { opacity: 1.0; } to { opacity: 0.0; }
+}
+
+.creator {
+  
+}
+
+.creator table {
+  margin-top: 1em;
+  margin-bottom: 1em;
+}
+
+.creator table td { border-left: 1px solid #000; }
+.creator table td:first-child { border-left: none; }
+
+.creator table th,
+.creator table td {
+  border-bottom: 0px;
+  text-align: center;
+  font-size: 0.75em;
+}
+
+.creator li {
+  font-size: 0.5em;
+}
+
+.creator p {
+  font-size: 0.5em;
+}
+
+
+.action,
+.action h4 {
+  color: var(--r-link-color);
+}
